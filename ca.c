@@ -78,13 +78,13 @@ void ca_iterate(ca_state * ca, int iterations) {
 }
 
 void ca_copy_data(ca_state * ca, int *data) {
-    int ca_width = ca->buffer_width;
-    int data_width = ca_width - 2;
+    int buffer_width = ca->buffer_width;
+    int data_width = buffer_width - 2;
     int data_height = ca->buffer_height - 2; 
     for (int y = 0; y < data_width; y++) {
-        int arOffset = (y + 1) * ca_width + 1;
-        int bArOffset = y * data_width;
+        int buf_offset = (y + 1) * buffer_width + 1;
+        int data_offset = y * data_width;
             for (int i = 0; i < data_height; i++)
-                data[bArOffset + i] = ca->src_ar[arOffset + i];
+                data[data_offset + i] = ca->src_ar[buf_offset + i];
     }
 }
